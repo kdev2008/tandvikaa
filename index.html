@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tandvikaa — School of Dance & Performing Arts, New Delhi</title>
+<link rel="icon" href="https://www.tandvikaa.com/wp-content/uploads/2025/08/cropped-download.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   DESIGN SYSTEM — 3D THEATRICAL STAGE
+   Dark cinematic + gold + deep crimson
+   Type: Playfair Display (display) + DM Sans
+   Aesthetic: Luxury theatre / dance stage 3D
+══════════════════════════════════════════ */
+:root{
+  --bg:        #08050F;
+  --surface:   #100C1E;
+  --card:      #150F28;
+  --deep:      #1E1538;
+  --gold:      #D4A017;
+  --gold2:     #F5C842;
+  --golddim:   #8A6400;
+  --crimson:   #C0183A;
+  --ember:     #E84C2B;
+  --cream:     #FFF8E6;
+  --ivory:     #F5EDD4;
+  --text:      #E8DFC8;
+  --muted:     #7A6E8A;
+  --border:    rgba(212,160,23,.18);
+  --glow:      rgba(212,160,23,.22);
+  --serif:     'Playfair Display', Georgia, serif;
+  --sans:      'DM Sans', sans-serif;
+  --ease:      cubic-bezier(.25,.46,.45,.94);
+  --spring:    cubic-bezier(.34,1.56,.64,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--sans);color:var(--text);
+  background:var(--bg);overflow-x:hidden;
+  cursor:default;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+.page{display:none}.page.on{display:block}
+
+/* ─── CUSTOM CURSOR (desktop) ─── */
+@media(pointer:fine){
+  body{cursor:none}
+  #cursor{
+    position:fixed;width:12px;height:12px;
+    background:var(--gold2);border-radius:50%;
+    pointer-events:none;z-index:99999;
+    transform:translate(-50%,-50%);
+    transition:transform .1s,width .25s,height .25s,background .25s;
+    mix-blend-mode:difference;
+  }
+  #cursor.big{width:40px;height:40px;background:rgba(245,200,66,.25)}
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* ─── NOISE OVERLAY ─── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4;
+}
+
+/* ─── LAYOUT ─── */
+.wrap{max-width:1320px;margin:0 auto;padding:0 2.5rem}
+section{padding:8rem 0}
+section.slim{padding:5rem 0}
+
+/* ─── REVEAL ANIMATIONS ─── */
+.fade-up{opacity:0;transform:translateY(48px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.fade-up.in{opacity:1;transform:translateY(0)}
+.fade-in{opacity:0;transition:opacity .8s var(--ease)}
+.fade-in.in{opacity:1}
+.fade-left{opacity:0;transform:translateX(-40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade-left.in{opacity:1;transform:translateX(0)}
+.fade-right{opacity:0;transform:translateX(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.fade-right.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}.d5{transition-delay:.60s}
+
+/* ─── LABELS ─── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--sans);font-size:.65rem;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:1rem;
+}
+.eyebrow::before,.eyebrow::after{content:'';display:block;width:16px;height:1px;background:var(--gold)}
+
+h2.head{
+  font-family:var(--serif);
+  font-size:clamp(2.6rem,4.5vw,4.2rem);
+  font-weight:700;color:var(--cream);line-height:1.05;
+  letter-spacing:-.02em;margin-bottom:1.2rem;
+}
+h2.head em{font-style:italic;color:var(--gold2)}
+h2.head-light{color:var(--bg)}
+h2.head-light em{color:var(--crimson)}
+
+.body-text{
+  font-family:var(--sans);font-size:.98rem;color:var(--muted);
+  line-height:1.9;font-weight:400;
+}
+
+/* ─── BUTTONS ─── */
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--sans);font-size:.8rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.9rem 2rem;border-radius:100px;cursor:pointer;border:none;
+  transition:all .4s var(--spring);position:relative;overflow:hidden;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:rgba(255,255,255,.12);transform:translateX(-110%);
+  transition:transform .4s var(--ease);
+}
+.btn:hover::before{transform:translateX(0)}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--ember) 100%);
+  color:#fff;box-shadow:0 8px 32px rgba(212,160,23,.4),0 0 0 0 rgba(212,160,23,.3);
+}
+.btn-gold:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 16px 48px rgba(212,160,23,.55),0 0 40px rgba(212,160,23,.2)}
+.btn-outline{
+  background:transparent;color:var(--gold2);
+  border:1.5px solid rgba(212,160,23,.4);
+}
+.btn-outline:hover{border-color:var(--gold);background:rgba(212,160,23,.07);transform:translateY(-2px)}
+.btn-ghost{
+  background:rgba(255,255,255,.05);color:var(--text);
+  border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);
+}
+.btn-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+/* ════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;width:100%;z-index:990;
+  transition:all .5s var(--ease);
+  padding:1.4rem 0;
+}
+#nav.scrolled{
+  background:rgba(8,5,15,.88);
+  backdrop-filter:blur(32px) saturate(1.5);
+  border-bottom:1px solid var(--border);
+  padding:.85rem 0;
+  box-shadow:0 8px 64px rgba(0,0,0,.6);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:.8rem;cursor:pointer}
+.nav-logo-ring{
+  width:46px;height:46px;border-radius:50%;
+  border:2px solid var(--gold);padding:2px;
+  background:rgba(212,160,23,.08);
+  transition:all .4s var(--spring);
+  position:relative;overflow:hidden;
+}
+.nav-logo-ring::before{
+  content:'';position:absolute;inset:-2px;border-radius:50%;
+  background:conic-gradient(from 0deg,transparent 70%,var(--gold2) 100%,transparent);
+  animation:spin 4s linear infinite;opacity:0;transition:opacity .4s;
+}
+.nav-logo:hover .nav-logo-ring::before{opacity:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+.nav-logo-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.nav-logo:hover .nav-logo-ring{transform:scale(1.08);box-shadow:0 0 24px var(--glow)}
+.nav-brand{display:flex;flex-direction:column;line-height:1}
+.nav-name{
+  font-family:var(--serif);font-size:1.1rem;font-weight:700;
+  color:#fff;letter-spacing:.05em;
+}
+.nav-sub{
+  font-family:var(--sans);font-size:.5rem;font-weight:700;
+  letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+  margin-top:2px;
+}
+.nav-links{display:flex;align-items:center;gap:.15rem;list-style:none}
+.nav-links a{
+  font-family:var(--sans);font-size:.72rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+  padding:.55rem 1rem;border-radius:100px;
+  transition:all .3s;position:relative;
+}
+.nav-links a:hover,.nav-links a.cur{color:#fff;background:rgba(255,255,255,.07)}
+.nav-links a.cur{color:var(--gold2)}
+.nav-cta{
+  background:linear-gradient(135deg,var(--gold),var(--ember)) !important;
+  color:#fff !important;padding:.55rem 1.4rem !important;
+  font-weight:700 !important;border-radius:100px !important;
+  box-shadow:0 4px 20px rgba(212,160,23,.35) !important;
+}
+.nav-cta.cur{color:#fff !important}
+.nav-cta:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 8px 32px rgba(212,160,23,.55) !important}
+.hamburger{display:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+.hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;transition:all .35s var(--ease)}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{
+  display:none;position:absolute;top:100%;left:0;width:100%;
+  background:rgba(8,5,15,.97);backdrop-filter:blur(40px);
+  border-bottom:1px solid var(--border);
+  padding:1.5rem 2.5rem 2rem;
+  flex-direction:column;gap:.5rem;
+}
+.mobile-menu a{
+  font-family:var(--sans);font-size:1rem;font-weight:600;
+  letter-spacing:.06em;color:rgba(255,255,255,.65);
+  padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.06);
+  transition:color .25s;
+}
+.mobile-menu a:hover,.mobile-menu a.cur{color:var(--gold2)}
+
+/* ════════════════════════════════════════
+   MOBILE BOTTOM QUICK-NAV
+════════════════════════════════════════ */
+#qnav{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:989;
+  background:rgba(8,5,15,.96);
+  backdrop-filter:blur(40px) saturate(2);
+  border-top:1px solid rgba(212,160,23,.2);
+  padding:.5rem 0 env(safe-area-inset-bottom,.5rem);
+  justify-content:space-around;align-items:stretch;
+}
+.qn-btn{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:.22rem;
+  background:none;border:none;cursor:pointer;
+  color:rgba(255,255,255,.35);
+  padding:.42rem .6rem .3rem;
+  border-radius:10px;min-width:52px;
+  transition:all .25s var(--spring);
+  position:relative;
+}
+.qn-btn.cur{color:var(--gold2)}
+.qn-btn.cur::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:24px;height:2.5px;border-radius:0 0 3px 3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+}
+.qn-btn:active{transform:scale(.92)}
+.qn-icon{font-size:1.35rem;line-height:1;display:block}
+.qn-label{
+  font-family:var(--sans);font-size:.52rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.qn-book{
+  background:linear-gradient(135deg,var(--gold),var(--ember)) !important;
+  color:#fff !important;
+  border-radius:14px !important;
+  box-shadow:0 4px 18px rgba(212,160,23,.45);
+  min-width:60px !important;
+}
+.qn-book.cur::before{display:none}
+.qn-book:hover{transform:translateY(-2px) scale(1.05)}
+
+/* ════════════════════════════════════════
+   3D HERO — CINEMATIC STAGE
+════════════════════════════════════════ */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;overflow:hidden;
+  background:var(--bg);padding-top:80px;
+}
+
+/* Layered theatrical background */
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-img{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1547153760-18fc86324498?w=1600&q=85') center/cover no-repeat;
+  opacity:.18;transform:scale(1.05);
+  animation:slow-zoom 20s ease-in-out infinite alternate;
+}
+@keyframes slow-zoom{from{transform:scale(1.05)}to{transform:scale(1.15)}}
+.hero-bg-grad{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(212,160,23,.06) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(192,24,58,.08) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(8,5,15,.85) 0%, rgba(8,5,15,.45) 40%, rgba(8,5,15,.95) 100%);
+}
+
+/* Vertical light shaft */
+.hero-shaft{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:2px;height:100%;
+  background:linear-gradient(to bottom, transparent 0%, rgba(212,160,23,.25) 30%, rgba(212,160,23,.08) 70%, transparent 100%);
+  z-index:1;
+}
+/* Stage floor lines — perspective */
+.hero-floor{
+  position:absolute;bottom:0;left:0;right:0;height:340px;z-index:1;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(212,160,23,.04) 0px, rgba(212,160,23,.04) 1px,
+      transparent 1px, transparent 80px
+    );
+  transform:perspective(600px) rotateX(55deg);
+  transform-origin:bottom center;
+  opacity:.7;
+}
+
+/* Floating particles */
+.particles{position:absolute;inset:0;z-index:1;pointer-events:none}
+.par{
+  position:absolute;width:2px;height:2px;border-radius:50%;
+  background:var(--gold2);
+  animation:float var(--d,8s) ease-in-out infinite;
+  animation-delay:var(--delay,0s);opacity:0;
+}
+@keyframes float{
+  0%{transform:translateY(100vh) translateX(0);opacity:0}
+  10%{opacity:.6}
+  90%{opacity:.3}
+  100%{transform:translateY(-20vh) translateX(var(--dx,20px));opacity:0}
+}
+
+/* Hero content */
+.hero-inner{
+  position:relative;z-index:2;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:center;min-height:calc(100vh - 80px);
+  padding:4rem 0 6rem;
+}
+.hero-left{max-width:600px}
+
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:rgba(212,160,23,.08);border:1px solid rgba(212,160,23,.25);
+  padding:.4rem 1rem;border-radius:100px;
+  font-family:var(--sans);font-size:.65rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:2rem;
+  backdrop-filter:blur(12px);
+}
+.tag-dot{
+  width:6px;height:6px;background:var(--gold2);border-radius:50%;
+  box-shadow:0 0 8px var(--gold2);
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 6px var(--gold2),0 0 0 0 rgba(245,200,66,.4)}50%{box-shadow:0 0 12px var(--gold2),0 0 0 8px rgba(245,200,66,0)}}
+
+.hero-h1{
+  font-family:var(--serif);
+  font-size:clamp(3rem,5.5vw,5.8rem);
+  font-weight:900;color:#fff;line-height:.95;
+  letter-spacing:-.03em;margin-bottom:1.6rem;
+}
+.hero-h1 .line{display:block;overflow:hidden}
+.hero-h1 .inner{display:block;transform:translateY(110%);animation:slide-up .9s var(--ease) forwards}
+.hero-h1 .line:nth-child(1) .inner{animation-delay:.3s}
+.hero-h1 .line:nth-child(2) .inner{animation-delay:.45s}
+.hero-h1 .line:nth-child(3) .inner{animation-delay:.6s}
+@keyframes slide-up{to{transform:translateY(0)}}
+.hero-h1 em{font-style:italic;color:var(--gold2);text-shadow:0 0 40px rgba(245,200,66,.4)}
+.hero-h1 .stroke{
+  -webkit-text-stroke:2px rgba(212,160,23,.5);
+  color:transparent;
+}
+
+.hero-body{
+  font-family:var(--sans);font-size:1rem;color:rgba(232,223,200,.65);
+  line-height:1.85;max-width:460px;font-weight:300;
+  margin-bottom:2.5rem;
+  animation:fade-in-body .9s ease .85s forwards;opacity:0;
+}
+@keyframes fade-in-body{to{opacity:1}}
+
+.hero-ctas{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fade-in-body .9s ease 1s forwards;opacity:0;
+}
+
+/* STATS ROW */
+.hero-stats{
+  display:flex;gap:0;margin-top:3.5rem;
+  border:1px solid var(--border);border-radius:16px;
+  background:rgba(255,255,255,.03);backdrop-filter:blur(16px);
+  overflow:hidden;animation:fade-in-body .9s ease 1.1s forwards;opacity:0;
+}
+.hstat{
+  flex:1;padding:1.2rem 1.5rem;text-align:center;
+  border-right:1px solid var(--border);
+  transition:background .3s;
+}
+.hstat:last-child{border-right:none}
+.hstat:hover{background:rgba(212,160,23,.05)}
+.hstat-n{
+  font-family:var(--serif);font-size:2.2rem;font-weight:900;
+  color:var(--gold2);line-height:1;letter-spacing:-.03em;
+}
+.hstat-l{
+  font-family:var(--sans);font-size:.58rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(232,223,200,.4);margin-top:.35rem;
+}
+
+/* ── HERO RIGHT: 3D FLOATING CARD STACK ── */
+.hero-visual{
+  position:relative;height:580px;
+  perspective:1000px;
+  display:flex;align-items:center;justify-content:center;
+}
+/* 3D Card container */
+.card3d-wrap{
+  position:relative;width:380px;height:480px;
+  transform-style:preserve-3d;
+  animation:card-float 6s ease-in-out infinite;
+}
+@keyframes card-float{
+  0%,100%{transform:rotateX(4deg) rotateY(-8deg) translateY(0)}
+  50%{transform:rotateX(-2deg) rotateY(4deg) translateY(-16px)}
+}
+.card3d{
+  position:absolute;border-radius:20px;overflow:hidden;
+  box-shadow:
+    0 40px 80px rgba(0,0,0,.7),
+    0 0 0 1px rgba(255,255,255,.07),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+.card3d-main{
+  width:340px;height:440px;top:20px;left:20px;
+  background:#000;
+  transform:translateZ(0);
+}
+.card3d-main img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.85) saturate(1.2);
+  display:block;
+}
+/* Shimmer overlay on card */
+.card3d-main::before{
+  content:'';position:absolute;inset:0;z-index:2;
+  background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,transparent 50%,rgba(212,160,23,.06) 100%);
+  pointer-events:none;
+}
+.card3d-main::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:50%;z-index:3;
+  background:linear-gradient(to top,rgba(8,5,15,.95) 0%,transparent 100%);
+}
+/* Info pill overlaid on card */
+.card-info{
+  position:absolute;bottom:0;left:0;right:0;z-index:4;
+  padding:1.5rem;
+  display:flex;align-items:flex-end;justify-content:space-between;
+}
+.card-text h3{
+  font-family:var(--serif);font-size:1.4rem;font-weight:700;color:#fff;
+  line-height:1.1;margin-bottom:.3rem;
+}
+.card-text p{
+  font-family:var(--sans);font-size:.68rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+}
+.card-badge{
+  background:linear-gradient(135deg,var(--gold),var(--ember));
+  color:#fff;padding:.4rem .9rem;border-radius:100px;
+  font-family:var(--sans);font-size:.65rem;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;
+  box-shadow:0 4px 16px rgba(212,160,23,.5);white-space:nowrap;
+}
+
+/* Behind cards */
+.card3d-back1{
+  width:280px;height:380px;right:-10px;bottom:-15px;
+  background:linear-gradient(135deg,var(--deep),var(--card));
+  border:1px solid var(--border);
+  transform:translateZ(-40px) rotate(6deg);
+  opacity:.7;
+}
+.card3d-back2{
+  width:260px;height:350px;left:-15px;top:10px;
+  background:linear-gradient(135deg,rgba(192,24,58,.15),rgba(8,5,15,.5));
+  border:1px solid rgba(192,24,58,.2);
+  transform:translateZ(-80px) rotate(-4deg);
+  opacity:.5;
+}
+
+/* Floating badge outside cards */
+.float-badge{
+  position:absolute;
+  background:rgba(8,5,15,.85);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--border);
+  border-radius:14px;padding:.9rem 1.3rem;
+  animation:badge-float 5s ease-in-out infinite;
+  box-shadow:0 8px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);
+  z-index:5;
+}
+.float-badge h4{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--gold2);line-height:1}
+.float-badge p{font-family:var(--sans);font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.badge-top{top:-1.5rem;right:2rem;animation-delay:0s}
+.badge-bot{bottom:2rem;left:-2rem;animation-delay:1.5s}
+@keyframes badge-float{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(-10px) rotate(1deg)}
+}
+
+/* Stage rings — decorative backdrop */
+.stage-ring{
+  position:absolute;border-radius:50%;border:1px solid rgba(212,160,23,.07);
+  pointer-events:none;
+  animation:ring-breathe 6s ease-in-out infinite;
+}
+.ring1{width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.ring2{width:800px;height:800px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:2s}
+.ring3{width:1000px;height:1000px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:4s}
+@keyframes ring-breathe{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ════════════════════════════════════════
+   MARQUEE STRIP
+════════════════════════════════════════ */
+.marquee-strip{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--ember) 100%);
+  padding:.9rem 0;overflow:hidden;position:relative;z-index:2;
+}
+.marquee-track{
+  display:flex;gap:0;width:max-content;
+  animation:marquee 28s linear infinite;
+}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{
+  font-family:var(--serif);font-size:1rem;font-weight:700;
+  color:rgba(8,5,15,.85);white-space:nowrap;
+  padding:0 2rem;display:flex;align-items:center;gap:2rem;
+}
+.marquee-item::after{content:'✦';color:rgba(8,5,15,.5)}
+
+/* ════════════════════════════════════════
+   ABOUT HOME — 3D SPLIT
+════════════════════════════════════════ */
+.about-sec{background:var(--surface);position:relative;overflow:hidden}
+.about-sec::before{
+  content:'';position:absolute;top:-200px;left:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle, rgba(212,160,23,.04) 0%, transparent 70%);
+  pointer-events:none;
+}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+
+/* 3D image stack */
+.about-visual{position:relative;height:560px;perspective:900px}
+.av-main{
+  position:absolute;inset:0;border-radius:16px;overflow:hidden;
+  transform:perspective(900px) rotateY(8deg) rotateX(2deg);
+  box-shadow:
+    -40px 40px 80px rgba(0,0,0,.6),
+    0 0 0 1px rgba(255,255,255,.06),
+    inset 0 1px 0 rgba(255,255,255,.1);
+  transition:transform .8s var(--ease);
+}
+.about-visual:hover .av-main{transform:perspective(900px) rotateY(2deg) rotateX(-1deg)}
+.av-main img{width:100%;height:100%;object-fit:cover;filter:brightness(.85) saturate(1.1)}
+.av-main::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(150deg,rgba(212,160,23,.08) 0%,transparent 60%);
+}
+.av-card{
+  position:absolute;bottom:-2rem;right:-2rem;z-index:3;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.4rem 1.8rem;
+  box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.07);
+  backdrop-filter:blur(20px);
+  transform:perspective(400px) rotateX(-5deg) rotateY(-8deg);
+  transition:transform .6s var(--ease);
+}
+.about-visual:hover .av-card{transform:perspective(400px) rotateX(-2deg) rotateY(-3deg)}
+.av-card-num{
+  font-family:var(--serif);font-size:3rem;font-weight:900;
+  color:var(--gold2);line-height:1;
+  text-shadow:0 0 30px rgba(245,200,66,.4);
+}
+.av-card-lbl{font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+
+.about-content .body-text{margin-bottom:1.3rem;max-width:480px}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-top:2rem}
+.feat{
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:1rem 1.2rem;
+  transition:all .4s var(--ease);cursor:default;
+}
+.feat:hover{background:rgba(212,160,23,.06);border-color:var(--border);transform:translateY(-3px)}
+.feat-icon{font-size:1.4rem;margin-bottom:.5rem}
+.feat h4{font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--cream);margin-bottom:.2rem}
+.feat p{font-family:var(--sans);font-size:.75rem;color:var(--muted);line-height:1.55}
+
+/* ════════════════════════════════════════
+   STYLES GRID — 3D HOVER CARDS
+════════════════════════════════════════ */
+.styles-sec{
+  background:var(--bg);position:relative;overflow:hidden;
+  padding-bottom:6rem;
+}
+.styles-sec::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.styles-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:4rem}
+.s-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+  perspective:1200px;
+}
+.s-card{
+  background:var(--card);border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;padding:2.4rem 2rem;
+  position:relative;overflow:hidden;cursor:default;
+  transform-style:preserve-3d;
+  transition:all .5s var(--ease);
+  box-shadow:0 8px 40px rgba(0,0,0,.4);
+}
+.s-card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(135deg,rgba(212,160,23,.06) 0%,transparent 60%);
+  opacity:0;transition:opacity .4s;
+}
+.s-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0 0 20px 20px;
+  background:linear-gradient(90deg,var(--gold),var(--ember));
+  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);
+}
+.s-card:hover{
+  transform:translateY(-10px) rotateX(4deg) rotateY(-2deg);
+  border-color:rgba(212,160,23,.2);
+  box-shadow:0 32px 80px rgba(0,0,0,.5),0 0 0 1px rgba(212,160,23,.1),0 -8px 30px rgba(212,160,23,.06) inset;
+}
+.s-card:hover::before{opacity:1}
+.s-card:hover::after{transform:scaleX(1)}
+.s-num{
+  font-family:var(--serif);font-size:4rem;font-weight:900;
+  color:rgba(255,255,255,.04);line-height:1;margin-bottom:.8rem;
+  transition:color .35s;letter-spacing:-.05em;
+}
+.s-card:hover .s-num{color:rgba(212,160,23,.15)}
+.s-icon{font-size:2rem;margin-bottom:1rem;display:block;filter:drop-shadow(0 4px 12px rgba(212,160,23,.3))}
+.s-name{
+  font-family:var(--serif);font-size:1.5rem;font-weight:700;
+  color:var(--cream);margin-bottom:.5rem;line-height:1.1;
+  letter-spacing:-.02em;
+}
+.s-desc{
+  font-family:var(--sans);font-size:.82rem;color:var(--muted);
+  line-height:1.7;font-weight:300;
+}
+.s-tag{
+  display:inline-block;margin-top:1rem;
+  font-family:var(--sans);font-size:.6rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:.28rem .8rem;border-radius:100px;
+  background:rgba(212,160,23,.1);color:var(--gold);
+  border:1px solid rgba(212,160,23,.2);
+}
+
+/* ════════════════════════════════════════
+   FOUNDER SECTION — IMMERSIVE SPLIT
+════════════════════════════════════════ */
+.founder-sec{
+  position:relative;overflow:hidden;background:var(--surface);
+}
+.founder-sec::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,160,23,.3),transparent);
+}
+.founder-grid{
+  display:grid;grid-template-columns:5fr 7fr;
+  min-height:680px;gap:0;
+}
+.founder-photo-col{
+  position:relative;overflow:hidden;
+}
+.founder-photo-col img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  display:block;filter:brightness(.75) saturate(1.1);
+  transition:transform .8s var(--ease);
+}
+.founder-sec:hover .founder-photo-col img{transform:scale(1.04)}
+.founder-photo-col::after{
+  content:'';position:absolute;right:0;top:0;bottom:0;width:180px;
+  background:linear-gradient(to right,transparent,var(--surface));
+}
+.founder-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,5,15,.8) 0%,transparent 40%);
+}
+.founder-label{
+  position:absolute;bottom:2rem;left:2rem;z-index:3;
+  background:linear-gradient(135deg,var(--gold),var(--ember));
+  color:var(--bg);padding:.75rem 1.4rem;border-radius:10px;
+  box-shadow:0 8px 32px rgba(212,160,23,.4);
+}
+.founder-label p{font-family:var(--sans);font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+.founder-label h4{font-family:var(--serif);font-size:1.15rem;font-weight:700;margin-top:.1rem}
+
+.founder-text{
+  padding:5rem 4rem 5rem 3.5rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.founder-text .eyebrow{color:var(--gold)}
+blockquote.founder-q{
+  font-family:var(--serif);font-size:1.5rem;font-weight:400;font-style:italic;
+  color:var(--cream);line-height:1.7;
+  border-left:3px solid var(--gold);padding-left:1.8rem;
+  margin:1.5rem 0 2rem;
+  position:relative;
+}
+blockquote.founder-q::before{
+  content:'\201C';position:absolute;top:-.5rem;left:-.5rem;
+  font-size:5rem;color:rgba(212,160,23,.12);font-family:var(--serif);font-weight:900;line-height:1;
+}
+.founder-text .body-text{max-width:480px;margin-bottom:.9rem}
+.founder-sig{
+  display:flex;align-items:center;gap:1rem;margin-top:2rem;
+  padding:1.1rem 1.5rem;background:rgba(255,255,255,.03);
+  border:1px solid var(--border);border-radius:12px;
+  width:fit-content;
+}
+.sig-img{
+  width:44px;height:44px;border-radius:50%;
+  object-fit:cover;border:2px solid var(--gold);
+  box-shadow:0 0 16px rgba(212,160,23,.3);
+}
+.sig-n{font-family:var(--sans);font-size:.9rem;font-weight:700;color:var(--cream)}
+.sig-r{font-family:var(--sans);font-size:.65rem;color:var(--gold);letter-spacing:.08em;margin-top:.1rem}
+
+/* ════════════════════════════════════════
+   TESTIMONIALS — 3D ANGLED CARDS
+════════════════════════════════════════ */
+.testi-sec{
+  background:var(--bg);position:relative;overflow:hidden;
+}
+.testi-sec::before{
+  content:'';position:absolute;top:40%;left:-300px;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(192,24,58,.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem;perspective:1200px}
+.tcard{
+  background:var(--card);border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;padding:2.2rem;
+  position:relative;overflow:hidden;
+  transition:all .5s var(--ease);
+  box-shadow:0 8px 40px rgba(0,0,0,.4);
+}
+.tcard:nth-child(odd){transform:rotateX(1deg) translateY(-6px)}
+.tcard:nth-child(even){transform:rotateX(-1deg) translateY(6px)}
+.tcard:hover{transform:rotateX(0) translateY(-12px) scale(1.02) !important;border-color:rgba(212,160,23,.2);box-shadow:0 24px 80px rgba(0,0,0,.5),0 0 40px rgba(212,160,23,.08)}
+.tcard-quote-mark{
+  font-family:var(--serif);font-size:5rem;font-weight:900;
+  color:rgba(212,160,23,.08);line-height:1;position:absolute;top:.5rem;right:1.5rem;
+}
+.tcard-stars{color:var(--gold);font-size:.85rem;letter-spacing:.1em;margin-bottom:.9rem}
+.tcard-text{
+  font-family:var(--serif);font-size:1rem;font-style:italic;
+  color:rgba(232,223,200,.75);line-height:1.85;
+  margin-bottom:1.5rem;
+}
+.tcard-author{display:flex;align-items:center;gap:.9rem}
+.tcard-av{
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,var(--deep),var(--crimson));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:1.1rem;font-weight:700;color:#fff;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+  border:2px solid rgba(255,255,255,.1);
+}
+.tcard-n{font-family:var(--sans);font-size:.85rem;font-weight:700;color:var(--cream)}
+.tcard-r{font-family:var(--sans);font-size:.68rem;color:var(--muted);margin-top:.12rem}
+
+/* Ratings row */
+.ratings-row{
+  display:flex;gap:1.5rem;justify-content:center;
+  margin-bottom:3.5rem;flex-wrap:wrap;
+}
+.rating-pill{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:100px;padding:.8rem 2rem;
+  display:flex;align-items:center;gap:.8rem;
+  transition:all .4s var(--spring);
+  box-shadow:0 4px 24px rgba(0,0,0,.3);
+}
+.rating-pill:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 12px 40px rgba(0,0,0,.4),0 0 20px rgba(212,160,23,.1)}
+.rp-num{font-family:var(--serif);font-size:1.8rem;font-weight:900;color:var(--gold2);line-height:1;letter-spacing:-.03em}
+.rp-info p:first-child{font-family:var(--sans);font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.rp-info p:last-child{color:var(--gold);font-size:.82rem;letter-spacing:.05em}
+
+/* ════════════════════════════════════════
+   GALLERY TEASER — 3D MOSAIC
+════════════════════════════════════════ */
+.gallery-sec{background:var(--surface);overflow:hidden;position:relative}
+.g-mosaic{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:260px 260px;
+  gap:.75rem;margin-top:3.5rem;
+  perspective:1200px;
+}
+.g-cell{
+  border-radius:14px;overflow:hidden;cursor:pointer;
+  position:relative;
+  transition:all .5s var(--ease);
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+}
+.g-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease);filter:brightness(.85) saturate(1.1)}
+.g-cell:hover{transform:scale(1.03) translateY(-6px) rotateX(2deg);box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 2px rgba(212,160,23,.3);z-index:2}
+.g-cell:hover img{transform:scale(1.08)}
+.g-cell:nth-child(1){grid-column:span 2;grid-row:span 2}
+.g-cell:nth-child(4){grid-column:span 2}
+.g-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,5,15,.95) 0%,transparent 55%);
+  opacity:0;transition:opacity .4s;
+  display:flex;align-items:flex-end;padding:1.2rem;
+}
+.g-cell:hover .g-ov{opacity:1}
+.g-ov span{
+  font-family:var(--sans);font-size:.68rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:#fff;
+}
+
+/* ════════════════════════════════════════
+   CTA BANNER — DRAMATIC
+════════════════════════════════════════ */
+.cta-sec{
+  position:relative;overflow:hidden;text-align:center;
+  padding:8rem 0;
+  background:var(--bg);
+}
+.cta-sec::before{
+  content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,160,23,.08) 0%,rgba(192,24,58,.04) 40%,transparent 70%);
+}
+.cta-sec::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.cta-sec h2{
+  font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:900;color:#fff;line-height:1;letter-spacing:-.03em;
+  margin-bottom:1.2rem;position:relative;
+}
+.cta-sec h2 em{color:var(--gold2);font-style:italic;text-shadow:0 0 40px rgba(245,200,66,.3)}
+.cta-sec p{font-family:var(--sans);font-size:1rem;color:var(--muted);margin-bottom:3rem;position:relative}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* ════════════════════════════════════════
+   INNER PAGE HERO / BANNER
+════════════════════════════════════════ */
+.pg-banner{
+  min-height:44vh;display:flex;align-items:flex-end;
+  position:relative;overflow:hidden;padding-top:88px;
+  background:var(--bg);
+}
+.pgb-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1600&q=80') center/cover no-repeat;
+  opacity:.12;transition:transform 8s ease;
+}
+.pg-banner:hover .pgb-bg{transform:scale(1.03)}
+.pgb-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,5,15,.6) 0%,rgba(8,5,15,1) 100%);
+}
+/* Horizontal scan line */
+.pgb-scan{
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,160,23,.5),transparent);
+  animation:scan-line 4s ease-in-out infinite;
+}
+@keyframes scan-line{0%{top:0}100%{top:100%}}
+.pgb-content{position:relative;z-index:2;padding:3rem 0 3.5rem;width:100%}
+.pgb-eye{font-family:var(--sans);font-size:.62rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.pgb-content h1{
+  font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:900;color:#fff;line-height:1;letter-spacing:-.03em;
+}
+.pgb-content h1 em{color:var(--gold2);font-style:italic}
+.pgb-bread{
+  font-family:var(--sans);font-size:.72rem;color:rgba(255,255,255,.3);margin-top:.6rem;
+}
+.pgb-bread a{color:var(--gold);transition:color .2s}
+.pgb-bread a:hover{color:var(--gold2)}
+
+/* ════════════════════════════════════════
+   CLASSES PAGE
+════════════════════════════════════════ */
+.cl-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
+  gap:1.5rem;margin-top:3.5rem;
+  perspective:1000px;
+}
+.cl-card{
+  background:var(--card);border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;overflow:hidden;
+  transition:all .5s var(--ease);cursor:default;
+  box-shadow:0 8px 40px rgba(0,0,0,.4);
+  transform-style:preserve-3d;
+}
+.cl-card:hover{
+  transform:translateY(-10px) rotateX(2deg);
+  border-color:rgba(212,160,23,.2);
+  box-shadow:0 28px 80px rgba(0,0,0,.5),0 0 40px rgba(212,160,23,.08);
+}
+.cl-head{
+  background:linear-gradient(140deg,var(--deep) 0%,var(--card) 100%);
+  padding:2.5rem 2.2rem 2rem;text-align:center;position:relative;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.cl-head.warm{background:linear-gradient(140deg,rgba(212,160,23,.15),rgba(232,76,43,.1),var(--card))}
+.cl-badge{
+  position:absolute;top:1rem;right:1rem;
+  background:linear-gradient(135deg,var(--gold),var(--ember));
+  color:#fff;padding:.2rem .75rem;border-radius:100px;
+  font-family:var(--sans);font-size:.58rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 3px 12px rgba(212,160,23,.4);
+}
+.cl-icon{font-size:2.8rem;margin-bottom:.8rem;filter:drop-shadow(0 4px 16px rgba(212,160,23,.4))}
+.cl-head h3{
+  font-family:var(--serif);font-size:1.6rem;font-weight:700;
+  color:var(--cream);margin-bottom:.25rem;letter-spacing:-.02em;
+}
+.cl-head p{font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.cl-body{padding:1.8rem 2rem}
+.cl-body p{font-family:var(--sans);font-size:.87rem;color:var(--muted);line-height:1.8;margin-bottom:1.3rem;font-weight:300}
+.cl-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
+.cl-tag{
+  font-family:var(--sans);font-size:.68rem;font-weight:600;
+  padding:.3rem .75rem;border-radius:100px;
+  background:rgba(255,255,255,.05);color:rgba(232,223,200,.6);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;gap:.3rem;
+}
+.lv-row{display:flex;align-items:center;gap:.4rem;margin-bottom:1.3rem}
+.lv-lbl{font-family:var(--sans);font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:.3rem}
+.lv-dot{width:8px;height:8px;border-radius:50%}
+.lv-dot.on{background:var(--gold);box-shadow:0 0 8px var(--gold)}
+.lv-dot.off{background:rgba(255,255,255,.12)}
+.enroll{
+  display:block;width:100%;text-align:center;
+  font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(255,255,255,.05);color:var(--cream);
+  border:1px solid rgba(255,255,255,.1);border-radius:100px;
+  padding:.85rem;cursor:pointer;transition:all .35s var(--ease);
+}
+.enroll:hover{background:linear-gradient(135deg,var(--gold),var(--ember));border-color:transparent;color:#fff;box-shadow:0 6px 24px rgba(212,160,23,.4);transform:translateY(-2px)}
+
+/* ════════════════════════════════════════
+   GALLERY PAGE
+════════════════════════════════════════ */
+.gal-masonry{columns:3;column-gap:1rem;margin-top:3rem}
+.gal-item{break-inside:avoid;margin-bottom:1rem;border-radius:14px;overflow:hidden;cursor:pointer;position:relative;box-shadow:0 4px 24px rgba(0,0,0,.4);transition:all .5s var(--ease)}
+.gal-item img{width:100%;display:block;transition:transform .7s var(--ease);filter:brightness(.85)}
+.gal-item:hover{transform:scale(1.02) translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 2px rgba(212,160,23,.3);z-index:2}
+.gal-item:hover img{transform:scale(1.07);filter:brightness(1)}
+.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,5,15,.95),transparent 55%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:1rem}
+.gal-item:hover .gal-ov{opacity:1}
+.gal-ov span{font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff}
+/* Lightbox */
+#lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:9999;align-items:center;justify-content:center}
+#lb.show{display:flex}
+#lb-img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:12px;box-shadow:0 40px 120px rgba(0,0,0,.8)}
+.lb-x{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;opacity:.6;transition:opacity .2s;z-index:10}
+.lb-x:hover{opacity:1}
+
+/* ════════════════════════════════════════
+   SCHEDULE
+════════════════════════════════════════ */
+.sch-wrap{overflow-x:auto;margin-top:3rem;border-radius:16px;overflow:hidden;box-shadow:0 8px 60px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.06)}
+.sch-t{width:100%;border-collapse:collapse}
+.sch-t thead th{
+  background:rgba(212,160,23,.12);
+  color:var(--gold2);
+  font-family:var(--sans);font-size:.65rem;font-weight:800;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding:1rem 1.2rem;text-align:center;border-bottom:1px solid rgba(212,160,23,.2);
+}
+.sch-t tbody td{
+  padding:.9rem 1rem;text-align:center;
+  background:var(--card);border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:.82rem;transition:background .2s;
+}
+.sch-t tbody tr:hover td{background:rgba(255,255,255,.04)}
+.sch-t tbody tr:last-child td{border-bottom:none}
+.ttime{color:var(--gold);font-weight:800;font-family:var(--sans);white-space:nowrap}
+.slot{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:.3rem .8rem;border-radius:100px;
+  font-size:.7rem;font-weight:700;font-family:var(--sans);min-width:110px;
+  border:1px solid rgba(255,255,255,.06);
+}
+.s-bol{background:rgba(232,76,43,.15);color:#F08060;border-color:rgba(232,76,43,.2)}
+.s-hip{background:rgba(92,31,160,.2);color:#B07AE0;border-color:rgba(92,31,160,.25)}
+.s-con{background:rgba(0,140,180,.15);color:#60C8E0;border-color:rgba(0,140,180,.2)}
+.s-kat{background:rgba(212,160,23,.15);color:var(--gold2);border-color:rgba(212,160,23,.2)}
+.s-jaz{background:rgba(180,0,120,.15);color:#E070C0;border-color:rgba(180,0,120,.2)}
+.s-fit{background:rgba(0,180,80,.12);color:#60E090;border-color:rgba(0,180,80,.18)}
+.s-wed{background:rgba(192,24,58,.15);color:#E07090;border-color:rgba(192,24,58,.2)}
+.sch-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;padding:1.1rem 1.5rem;background:var(--card);border-radius:12px;border:1px solid rgba(255,255,255,.05)}
+.leg-i{display:flex;align-items:center;gap:.4rem;font-family:var(--sans);font-size:.7rem;font-weight:600;color:var(--muted)}
+.leg-dot{width:9px;height:9px;border-radius:50%}
+
+/* ════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════ */
+.con-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start;margin-top:3.5rem}
+.ci-row{display:flex;gap:1rem;margin-bottom:1.5rem;align-items:flex-start}
+.ci-icon{
+  width:46px;height:46px;min-width:46px;border-radius:12px;
+  background:rgba(212,160,23,.08);border:1px solid rgba(212,160,23,.18);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  transition:all .35s;
+}
+.ci-row:hover .ci-icon{background:rgba(212,160,23,.15);transform:scale(1.1) rotate(-5deg)}
+.ci-lbl{font-family:var(--sans);font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
+.ci-val{font-family:var(--sans);font-size:.9rem;color:var(--cream)}
+.ci-val a{color:var(--cream);transition:color .2s}.ci-val a:hover{color:var(--gold2)}
+.wa-cta{
+  display:inline-flex;align-items:center;gap:.75rem;
+  background:#25D366;color:#fff;padding:.9rem 1.8rem;border-radius:100px;
+  font-family:var(--sans);font-size:.8rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;margin-top:1.5rem;
+  transition:all .4s var(--spring);
+  box-shadow:0 4px 20px rgba(37,211,102,.3);
+}
+.wa-cta:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 40px rgba(37,211,102,.5)}
+.map-box{margin-top:2rem;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.07);box-shadow:0 8px 40px rgba(0,0,0,.4)}
+.map-box iframe{width:100%;height:260px;border:none;display:block;filter:invert(92%) hue-rotate(180deg)}
+.cf-box{
+  background:var(--card);border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;padding:3rem;
+  box-shadow:0 20px 80px rgba(0,0,0,.5);
+}
+.cf-head{display:flex;align-items:center;gap:.9rem;margin-bottom:.5rem}
+.cf-head img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 0 16px rgba(212,160,23,.3)}
+.cf-head h3{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--cream);letter-spacing:-.02em}
+.cf-box > p{font-family:var(--sans);font-size:.85rem;color:var(--muted);margin-bottom:2rem;line-height:1.65}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-family:var(--sans);font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.42rem}
+.fg input,.fg select,.fg textarea{
+  width:100%;padding:.85rem 1.1rem;
+  background:rgba(255,255,255,.04);
+  border:1.5px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  font-family:var(--sans);font-size:.9rem;color:var(--cream);
+  outline:none;transition:all .3s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:rgba(212,160,23,.5);
+  background:rgba(255,255,255,.07);
+  box-shadow:0 0 0 3px rgba(212,160,23,.1);
+}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted)}
+.fg select option{background:var(--card);color:var(--cream)}
+.fg textarea{resize:vertical;min-height:110px}
+.f-submit{
+  width:100%;background:linear-gradient(135deg,var(--gold) 0%,var(--ember) 100%);
+  color:#fff;border:none;border-radius:100px;padding:1rem;cursor:pointer;
+  font-family:var(--sans);font-size:.85rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  transition:all .4s var(--spring);
+  box-shadow:0 6px 24px rgba(212,160,23,.35);
+}
+.f-submit:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 48px rgba(212,160,23,.55)}
+
+/* ════════════════════════════════════════
+   ABOUT PAGE EXTRAS
+════════════════════════════════════════ */
+.mv-strip{background:var(--surface);padding:5rem 0}
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem;perspective:800px}
+.mv-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:2.8rem;
+  transition:all .5s var(--ease);
+  box-shadow:0 8px 40px rgba(0,0,0,.4);
+}
+.mv-card:nth-child(1){transform:rotateX(2deg) rotateY(-1deg)}
+.mv-card:nth-child(2){transform:rotateX(2deg) rotateY(1deg)}
+.mv-card:hover{transform:translateY(-8px) rotateX(0) rotateY(0);border-color:rgba(212,160,23,.25);box-shadow:0 24px 80px rgba(0,0,0,.5),0 0 30px rgba(212,160,23,.07)}
+.mv-card h3{font-family:var(--serif);font-size:1.9rem;font-weight:700;color:var(--gold2);margin-bottom:.9rem;letter-spacing:-.02em}
+.mv-card p{font-family:var(--sans);color:var(--muted);line-height:1.85;font-size:.93rem;font-weight:300}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{
+  background:var(--surface);border-top:1px solid rgba(255,255,255,.05);
+  padding:5rem 0 0;
+}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;margin-bottom:4rem}
+.ft-brand p{font-family:var(--sans);font-size:.84rem;color:var(--muted);line-height:1.85;max-width:280px;font-weight:300;margin-top:1rem}
+footer h5{font-family:var(--sans);font-size:.6rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
+footer ul{list-style:none}
+footer li{margin-bottom:.65rem}
+footer li a{font-family:var(--sans);font-size:.83rem;color:var(--muted);transition:color .2s}
+footer li a:hover{color:var(--gold2)}
+.ft-ci{display:flex;gap:.75rem;margin-bottom:.9rem;align-items:flex-start}
+.ft-ci span:first-child{color:var(--gold);font-size:.9rem;margin-top:.05rem}
+.ft-ci span:last-child{font-family:var(--sans);font-size:.82rem;color:var(--muted);line-height:1.6}
+.ft-soc{display:flex;gap:.6rem;margin-top:1.8rem}
+.fsc{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:.68rem;font-weight:800;color:var(--muted);
+  transition:all .35s var(--spring);
+}
+.fsc:hover{background:var(--gold);border-color:var(--gold);color:var(--bg);transform:translateY(-3px) scale(1.1)}
+.ft-bot{
+  border-top:1px solid rgba(255,255,255,.05);
+  padding:1.5rem 0;display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:.8rem;
+}
+.ft-bot p{font-family:var(--sans);font-size:.73rem;color:rgba(255,255,255,.2)}
+.ft-bot a{color:var(--gold)}
+
+/* WhatsApp float */
+.wa-fl{position:fixed;bottom:5.5rem;right:1.5rem;z-index:950}
+.wa-fl a{
+  width:54px;height:54px;border-radius:50%;background:#25D366;
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  box-shadow:0 4px 24px rgba(37,211,102,.5);transition:all .4s var(--spring);
+}
+.wa-fl a:hover{transform:scale(1.15) translateY(-4px);box-shadow:0 12px 40px rgba(37,211,102,.65)}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:1100px){
+  .hero-inner{grid-template-columns:1fr;min-height:auto;padding:3rem 0 5rem}
+  .hero-visual{display:none}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .founder-grid{grid-template-columns:1fr}
+  .founder-photo-col img{min-height:400px}
+  .founder-photo-col::after{display:none}
+  .ft-grid{grid-template-columns:1fr 1fr}
+  .s-grid{grid-template-columns:repeat(2,1fr)}
+  .con-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  #qnav{display:flex}
+  .wa-fl{bottom:5.5rem}
+  body{padding-bottom:68px}
+  section{padding:5rem 0}
+  .s-grid{grid-template-columns:1fr}
+  .gal-masonry{columns:1}
+  .testi-grid{grid-template-columns:1fr}
+  .g-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .g-cell:nth-child(1){grid-column:span 2;grid-row:auto}
+  .g-cell:nth-child(4){grid-column:span 1}
+  .ft-grid{grid-template-columns:1fr}
+  .mv-grid{grid-template-columns:1fr}
+  .hero-h1{font-size:clamp(2.5rem,8vw,4rem)}
+  .wrap{padding:0 1.4rem}
+  .tcard:nth-child(odd),.tcard:nth-child(even){transform:none}
+}
+@media(max-width:480px){
+  .hero-stats{flex-direction:column}
+  .hstat{border-right:none;border-bottom:1px solid var(--border)}
+  .hstat:last-child{border-bottom:none}
+  .ratings-row{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<!-- ════════════════════════════════
+     NAVIGATION
+════════════════════════════════ -->
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <div class="nav-logo" onclick="goto('home')">
+      <div class="nav-logo-ring">
+        <img src="https://www.tandvikaa.com/wp-content/uploads/2025/08/cropped-download.png" alt="Tandvikaa">
+      </div>
+      <div class="nav-brand">
+        <span class="nav-name">Tandvikaa</span>
+        <span class="nav-sub">School of Dance</span>
+      </div>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" onclick="return goto('home')" data-p="home" class="cur">Home</a></li>
+      <li><a href="#" onclick="return goto('about')" data-p="about">About</a></li>
+      <li><a href="#" onclick="return goto('classes')" data-p="classes">Classes</a></li>
+      <li><a href="#" onclick="return goto('gallery')" data-p="gallery">Gallery</a></li>
+      <li><a href="#" onclick="return goto('schedule')" data-p="schedule">Schedule</a></li>
+      <li><a href="#" onclick="return goto('testi')" data-p="testi">Reviews</a></li>
+      <li><a href="#" onclick="return goto('contact')" data-p="contact" class="nav-cta">✦ Book Demo</a></li>
+    </ul>
+
+    <div class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="mobile-menu" id="mMenu">
+      <a href="#" onclick="return goto('home')" data-p="home">Home</a>
+      <a href="#" onclick="return goto('about')" data-p="about">About Us</a>
+      <a href="#" onclick="return goto('classes')" data-p="classes">Classes &amp; Programs</a>
+      <a href="#" onclick="return goto('gallery')" data-p="gallery">Gallery</a>
+      <a href="#" onclick="return goto('schedule')" data-p="schedule">Schedule</a>
+      <a href="#" onclick="return goto('testi')" data-p="testi">Testimonials</a>
+      <a href="#" onclick="return goto('contact')" data-p="contact" style="color:var(--gold2)">✦ Book Free Demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════
+     MOBILE QUICK-NAV DOCK
+════════════════════════════════ -->
+<div id="qnav">
+  <button class="qn-btn cur" data-p="home" onclick="goto('home')">
+    <span class="qn-icon">🏠</span><span class="qn-label">Home</span>
+  </button>
+  <button class="qn-btn" data-p="classes" onclick="goto('classes')">
+    <span class="qn-icon">💃</span><span class="qn-label">Classes</span>
+  </button>
+  <button class="qn-btn" data-p="gallery" onclick="goto('gallery')">
+    <span class="qn-icon">🖼</span><span class="qn-label">Gallery</span>
+  </button>
+  <button class="qn-btn" data-p="schedule" onclick="goto('schedule')">
+    <span class="qn-icon">📅</span><span class="qn-label">Schedule</span>
+  </button>
+  <button class="qn-btn qn-book" data-p="contact" onclick="goto('contact')">
+    <span class="qn-icon">✨</span><span class="qn-label">Book</span>
+  </button>
+</div>
+
+<!-- ════════════════════════════════
+     H O M E
+════════════════════════════════ -->
+<div class="page on" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- Background layers -->
+    <div class="hero-bg">
+      <div class="hero-bg-img"></div>
+      <div class="hero-bg-grad"></div>
+    </div>
+    <div class="hero-shaft"></div>
+    <div class="hero-floor"></div>
+
+    <!-- Particles -->
+    <div class="particles" id="pars"></div>
+
+    <!-- Stage rings -->
+    <div class="stage-ring ring1"></div>
+    <div class="stage-ring ring2"></div>
+    <div class="stage-ring ring3"></div>
+
+    <div class="wrap hero-inner">
+      <!-- LEFT: TEXT -->
+      <div class="hero-left">
+        <div class="hero-tag fade-in">
+          <span class="tag-dot"></span>
+          New Delhi's Premier Dance Academy
+        </div>
+
+        <h1 class="hero-h1">
+          <span class="line"><span class="inner">Where</span></span>
+          <span class="line"><span class="inner">Movement</span></span>
+          <span class="line"><span class="inner"><em>Becomes</em> <span class="stroke">Art</span></span></span>
+        </h1>
+
+        <p class="hero-body">
+          Bollywood · Hip-Hop · Contemporary · Kathak · Jazz · Wedding Choreography — crafted with passion, taught by artists, experienced in a world-class studio in New Ashok Nagar.
+        </p>
+
+        <div class="hero-ctas">
+          <button class="btn btn-gold" onclick="goto('contact')">✦ Book Free Demo Class</button>
+          <button class="btn btn-ghost" onclick="goto('classes')">Explore Programs</button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hstat"><span class="hstat-n">4.7★</span><div class="hstat-l">Justdial</div></div>
+          <div class="hstat"><span class="hstat-n">4.8★</span><div class="hstat-l">Google</div></div>
+          <div class="hstat"><span class="hstat-n">100+</span><div class="hstat-l">Students</div></div>
+          <div class="hstat"><span class="hstat-n">6+</span><div class="hstat-l">Styles</div></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: 3D CARD STACK -->
+      <div class="hero-visual">
+        <div class="card3d-wrap" id="card3d">
+          <!-- Behind cards -->
+          <div class="card3d card3d-back2"></div>
+          <div class="card3d card3d-back1"></div>
+          <!-- Main card -->
+          <div class="card3d card3d-main">
+            <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=800&q=85" alt="Dance Studio">
+            <div class="card-info">
+              <div class="card-text">
+                <h3>Professional Studio</h3>
+                <p>New Ashok Nagar · Delhi</p>
+              </div>
+              <span class="card-badge">Now Open</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating info badges -->
+        <div class="float-badge badge-top">
+          <h4>100+</h4>
+          <p>Happy Students</p>
+        </div>
+        <div class="float-badge badge-bot">
+          <h4>6 Styles</h4>
+          <p>All Levels Welcome</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item">Bollywood</span>
+      <span class="marquee-item">Hip-Hop</span>
+      <span class="marquee-item">Contemporary</span>
+      <span class="marquee-item">Kathak</span>
+      <span class="marquee-item">Jazz &amp; Freestyle</span>
+      <span class="marquee-item">Wedding Choreography</span>
+      <span class="marquee-item">Dance Fitness</span>
+      <span class="marquee-item">Bollywood</span>
+      <span class="marquee-item">Hip-Hop</span>
+      <span class="marquee-item">Contemporary</span>
+      <span class="marquee-item">Kathak</span>
+      <span class="marquee-item">Jazz &amp; Freestyle</span>
+      <span class="marquee-item">Wedding Choreography</span>
+      <span class="marquee-item">Dance Fitness</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-sec">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-visual fade-left">
+          <div class="av-main">
+            <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&q=80" alt="Studio">
+          </div>
+          <div class="av-card">
+            <div class="av-card-num">100+</div>
+            <div class="av-card-lbl">Students &amp; Counting</div>
+          </div>
+        </div>
+        <div class="fade-right d2">
+          <div class="eyebrow">About Tandvikaa</div>
+          <h2 class="head">Welcome to the <em>Premier</em> Dance Academy</h2>
+          <p class="body-text">At Tandvikaa School of Dance, we cultivate artistic excellence through a fusion of tradition and innovation. Our experienced instructors guide you to discover and express your unique rhythm in a space designed to inspire greatness.</p>
+          <p class="body-text">Equipped with premium lighting, top-quality sound systems, and spacious floor-to-ceiling mirrors — an environment where every class feels like a performance.</p>
+          <div class="feat-grid">
+            <div class="feat"><div class="feat-icon">🪞</div><h4>World-Class Studio</h4><p>Floor-to-ceiling mirrors, premium audio &amp; stage lighting.</p></div>
+            <div class="feat"><div class="feat-icon">🏆</div><h4>Expert Artists</h4><p>Seasoned performers bringing passion to every class.</p></div>
+            <div class="feat"><div class="feat-icon">🎭</div><h4>Live Performances</h4><p>Stage events, showcases &amp; competitions year-round.</p></div>
+            <div class="feat"><div class="feat-icon">💍</div><h4>Wedding Specials</h4><p>Custom choreography for unforgettable celebrations.</p></div>
+          </div>
+          <button class="btn btn-gold" onclick="goto('about')" style="margin-top:2.2rem">Discover Our Story →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DANCE STYLES -->
+  <section class="styles-sec">
+    <div class="wrap">
+      <div class="styles-head fade-up">
+        <div>
+          <div class="eyebrow">Our Programs</div>
+          <h2 class="head">Six Styles, <em>One Studio</em></h2>
+        </div>
+        <button class="btn btn-outline" onclick="goto('classes')">View All Classes →</button>
+      </div>
+      <div class="s-grid">
+        <div class="s-card fade-up d1"><div class="s-num">01</div><span class="s-icon">🎬</span><h3 class="s-name">Bollywood Dance</h3><p class="s-desc">High-energy moves blending classical, folk, and modern filmy styles. India's most expressive popular dance form.</p><span class="s-tag">All Levels · Ages 6+</span></div>
+        <div class="s-card fade-up d2"><div class="s-num">02</div><span class="s-icon">🎤</span><h3 class="s-name">Hip-Hop</h3><p class="s-desc">Breaking, popping, locking and freestyle. Authentic street culture brought into a structured, inspiring studio environment.</p><span class="s-tag">All Levels · Ages 10+</span></div>
+        <div class="s-card fade-up d3"><div class="s-num">03</div><span class="s-icon">🌊</span><h3 class="s-name">Contemporary</h3><p class="s-desc">Fluid, emotional movement combining technique with improvisation. A deeply personal and expressive art form.</p><span class="s-tag">Intermediate+ · Ages 14+</span></div>
+        <div class="s-card fade-up d1"><div class="s-num">04</div><span class="s-icon">🪷</span><h3 class="s-name">Kathak</h3><p class="s-desc">India's classical storytelling dance — intricate tatkar, graceful chakkar, and expressive mudras with traditional depth.</p><span class="s-tag">All Levels · Ages 5+</span></div>
+        <div class="s-card fade-up d2"><div class="s-num">05</div><span class="s-icon">✨</span><h3 class="s-name">Jazz &amp; Freestyle</h3><p class="s-desc">Theatrical kicks, turns, leaps and personal expression. Dynamic and perfect for building stage confidence.</p><span class="s-tag">Beginner+ · Ages 8+</span></div>
+        <div class="s-card fade-up d3"><div class="s-num">06</div><span class="s-icon">💍</span><h3 class="s-name">Wedding Choreography</h3><p class="s-desc">Custom-crafted routines for couples, families &amp; bridal parties. Personalized, stylish, and absolutely unforgettable.</p><span class="s-tag">Special · All Ages</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="founder-sec" style="padding:0">
+    <div class="founder-grid">
+      <div class="founder-photo-col fade-left">
+        <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&q=80" alt="Founder KK Kiranjeet">
+        <div class="founder-overlay"></div>
+        <div class="founder-label">
+          <p>Founder &amp; Artistic Director</p>
+          <h4>KK Kiranjeet</h4>
+        </div>
+      </div>
+      <div class="founder-text fade-right d2">
+        <div class="eyebrow">Message from the Founder</div>
+        <h2 class="head">A Letter <em>from Kiranjeet</em></h2>
+        <blockquote class="founder-q">"Dance has always been more than just a hobby for me — it has been my passion, my escape, and my way of connecting with the world."</blockquote>
+        <p class="body-text">When I started Tandvikaa School of Dance, my dream was simple: to create a place where anyone, no matter their age or experience, could feel the same joy and freedom that dance has given me.</p>
+        <p class="body-text">At Tandvikaa, dance is not only about perfecting steps. It's about building confidence, discovering your unique style, expressing emotions, and above all — enjoying the journey. <span style="color:var(--cream);font-weight:600">Tandvikaa is your home.</span></p>
+        <div class="founder-sig">
+          <img class="sig-img" src="https://www.tandvikaa.com/wp-content/uploads/2025/08/cropped-download.png" alt="Logo">
+          <div><div class="sig-n">KK Kiranjeet</div><div class="sig-r">Founder &amp; Artistic Director · Tandvikaa</div></div>
+        </div>
+        <button class="btn btn-gold" onclick="goto('about')" style="margin-top:2rem">Read Full Story →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY TEASER -->
+  <section class="gallery-sec">
+    <div class="wrap">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem" class="fade-up">
+        <div>
+          <div class="eyebrow">Our Moments</div>
+          <h2 class="head">Life at <em>Tandvikaa</em></h2>
+        </div>
+        <button class="btn btn-outline" onclick="goto('gallery')">Full Gallery →</button>
+      </div>
+      <div class="g-mosaic fade-up d2">
+        <div class="g-cell"><img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=800&q=80" alt="Studio"><div class="g-ov"><span>The Studio</span></div></div>
+        <div class="g-cell"><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=600&q=80" alt="Classes"><div class="g-ov"><span>Bollywood Classes</span></div></div>
+        <div class="g-cell"><img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&q=80" alt="Performance"><div class="g-ov"><span>Performances</span></div></div>
+        <div class="g-cell"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&q=80" alt="Show"><div class="g-ov"><span>Live Shows</span></div></div>
+        <div class="g-cell"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&q=80" alt="Practice"><div class="g-ov"><span>Practice Sessions</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi-sec">
+    <div class="wrap">
+      <div style="text-align:center" class="fade-up">
+        <div class="eyebrow" style="justify-content:center">What Our Students Say</div>
+        <h2 class="head" style="text-align:center">Real Stories, Real <em>Transformations</em></h2>
+      </div>
+      <div class="ratings-row fade-up d1">
+        <div class="rating-pill"><div class="rp-num">4.7</div><div class="rp-info"><p>Justdial Rating</p><p>★★★★★</p></div></div>
+        <div class="rating-pill"><div class="rp-num">4.8</div><div class="rp-info"><p>Google Maps</p><p>★★★★★</p></div></div>
+        <div class="rating-pill"><div class="rp-num">100+</div><div class="rp-info"><p>Happy Students</p><p>and growing</p></div></div>
+      </div>
+      <div class="testi-grid">
+        <div class="tcard fade-up d1"><div class="tcard-quote-mark">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">"The instructors at Tandvikaa are incredibly passionate. From my very first Bollywood class, I felt welcomed and motivated. My technique has completely transformed!"</p><div class="tcard-author"><div class="tcard-av">P</div><div><div class="tcard-n">Priya Sharma</div><div class="tcard-r">Bollywood Student · Google</div></div></div></div>
+        <div class="tcard fade-up d2"><div class="tcard-quote-mark">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">"Best dance academy in New Ashok Nagar! Beautiful studio, amazing vibes. Kiranjeet Sir really pushes you to grow. I look forward to every single class."</p><div class="tcard-author"><div class="tcard-av">R</div><div><div class="tcard-n">Rahul Verma</div><div class="tcard-r">Hip-Hop Student · Justdial</div></div></div></div>
+        <div class="tcard fade-up d3"><div class="tcard-quote-mark">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">"We hired Tandvikaa for our sangeet — 15 family members, zero experience! The choreography was stunning and our performance got a standing ovation!"</p><div class="tcard-author"><div class="tcard-av">N</div><div><div class="tcard-n">Neha &amp; Family</div><div class="tcard-r">Wedding Choreography · Google</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-sec">
+    <div class="wrap fade-up">
+      <div class="eyebrow" style="justify-content:center">Limited Spots Available</div>
+      <h2>Ready for Your <em>Dance Journey?</em></h2>
+      <p>Book a free demo class — no experience needed. Just passion and a desire to move.</p>
+      <div class="cta-btns">
+        <button class="btn btn-gold" onclick="goto('contact')">✦ Book Free Demo Class</button>
+        <a href="tel:+919873274147" class="btn btn-ghost">📞 Call Now</a>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /home -->
+
+<!-- ════════════════════════════════
+     A B O U T
+════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="pg-banner">
+    <div class="pgb-bg"></div><div class="pgb-ov"></div><div class="pgb-scan"></div>
+    <div class="pgb-content wrap">
+      <div class="pgb-eye">Our Story</div>
+      <h1 class="fade-up">About <em>Tandvikaa</em></h1>
+      <div class="pgb-bread"><a href="#" onclick="return goto('home')">Home</a> / About</div>
+    </div>
+  </div>
+  <section class="about-sec">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-visual fade-left">
+          <div class="av-main"><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&q=80" alt="Studio"></div>
+          <div class="av-card"><div class="av-card-num">2020</div><div class="av-card-lbl">Founded in New Delhi</div></div>
+        </div>
+        <div class="fade-right d2">
+          <div class="eyebrow">Our Academy</div>
+          <h2 class="head">A Community <em>of Artists</em></h2>
+          <p class="body-text">Tandvikaa School of Dance &amp; Performing Arts was born from a powerful belief: that dance has the power to transform lives. Founded in New Delhi, we've built a space where beginners discover their passion and experienced dancers perfect their craft.</p>
+          <p class="body-text">Our academy is equipped with premium lighting, top-quality sound systems, and spacious floor-to-ceiling mirrors — the perfect environment for dance, fitness, and performance.</p>
+          <div class="feat-grid">
+            <div class="feat"><div class="feat-icon">💡</div><h4>Innovative Curriculum</h4><p>Classical traditions blended with modern technique for a rich, evolving program.</p></div>
+            <div class="feat"><div class="feat-icon">👨‍🏫</div><h4>Master Faculty</h4><p>Professional performers with years of stage and choreography experience.</p></div>
+            <div class="feat"><div class="feat-icon">🎖️</div><h4>Proven Track Record</h4><p>4.7★ rated with students featured in events and corporate shows.</p></div>
+            <div class="feat"><div class="feat-icon">❤️</div><h4>Inclusive Community</h4><p>All ages, all backgrounds — everyone has a place at Tandvikaa.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mv-strip">
+    <div class="wrap">
+      <div style="text-align:center" class="fade-up">
+        <div class="eyebrow" style="justify-content:center">Our Purpose</div>
+        <h2 class="head" style="text-align:center">Mission &amp; <em>Vision</em></h2>
+      </div>
+      <div class="mv-grid">
+        <div class="mv-card fade-up d1"><h3>🎯 Our Mission</h3><p>To cultivate artistic excellence and personal growth through the transformative power of dance — making quality education accessible to all ages and abilities, while nurturing confidence, creativity, and community in every student.</p></div>
+        <div class="mv-card fade-up d2"><h3>🌟 Our Vision</h3><p>To become Delhi's most celebrated dance academy — a beacon of artistic excellence that inspires generations of dancers and performing artists, where every student's story is beautifully told through movement.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="founder-sec" style="padding:0">
+    <div class="founder-grid">
+      <div class="founder-photo-col fade-left">
+        <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&q=80" alt="Kiranjeet">
+        <div class="founder-overlay"></div>
+        <div class="founder-label"><p>Founder &amp; Artistic Director</p><h4>KK Kiranjeet</h4></div>
+      </div>
+      <div class="founder-text fade-right d2">
+        <div class="eyebrow">Founder's Message</div>
+        <h2 class="head">A Message from <em>Kiranjeet</em></h2>
+        <blockquote class="founder-q">"Dance has always been more than just a hobby for me — it has been my passion, my escape, and my way of connecting with the world."</blockquote>
+        <p class="body-text">When I started Tandvikaa School of Dance, my dream was simple: to create a place where anyone, no matter their age or experience, could feel the same joy and freedom that dance has given me.</p>
+        <p class="body-text">At Tandvikaa, we believe dance is not only about perfecting steps. It's about building confidence, discovering your unique style, expressing emotions, and above all — enjoying the journey. Every beat, every movement, and every performance is a chance to tell your own story.</p>
+        <p class="body-text"><span style="color:var(--cream);font-weight:600">Together, let's celebrate movement, rhythm, and life — one step at a time.</span></p>
+        <div class="founder-sig">
+          <img class="sig-img" src="https://www.tandvikaa.com/wp-content/uploads/2025/08/cropped-download.png" alt="Logo">
+          <div><div class="sig-n">KK Kiranjeet</div><div class="sig-r">Founder &amp; Artistic Director · Tandvikaa</div></div>
+        </div>
+        <button class="btn btn-gold" onclick="goto('contact')" style="margin-top:2rem">Join Our Family ✦</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ════════════════════════════════
+     C L A S S E S
+════════════════════════════════ -->
+<div class="page" id="page-classes">
+  <div class="pg-banner"><div class="pgb-bg"></div><div class="pgb-ov"></div><div class="pgb-scan"></div>
+    <div class="pgb-content wrap"><div class="pgb-eye">Programs</div><h1 class="fade-up">Classes &amp; <em>Programs</em></h1><div class="pgb-bread"><a href="#" onclick="return goto('home')">Home</a> / Classes</div></div>
+  </div>
+  <section><div class="wrap">
+    <div style="text-align:center;margin-bottom:.5rem" class="fade-up">
+      <div class="eyebrow" style="justify-content:center">What We Offer</div>
+      <h2 class="head" style="text-align:center">Programs for <em>Every Level</em></h2>
+      <p class="body-text" style="text-align:center;max-width:520px;margin:0 auto">Whether first-timer or seasoned performer, we have the perfect program to unlock your full potential.</p>
+    </div>
+    <div class="cl-grid">
+      <div class="cl-card fade-up d1"><div class="cl-head"><div class="cl-badge">Popular</div><div class="cl-icon">🎬</div><h3>Bollywood Dance</h3><p>Filmy · Folk Fusion · Modern</p></div><div class="cl-body"><p>Immerse yourself in the vibrant world of Bollywood — from classic film choreography to contemporary fusion. Learn expressive gestures, dynamic footwork, and infectious energy.</p><div class="cl-meta"><span class="cl-tag">⏱ 60 min</span><span class="cl-tag">👶 Ages 6+</span><span class="cl-tag">📅 Mon, Wed, Fri</span></div><div class="lv-row"><span class="lv-lbl">Level</span><div class="lv-dot on"></div><div class="lv-dot on"></div><div class="lv-dot on"></div><div class="lv-dot off"></div><div class="lv-dot off"></div></div><button class="enroll" onclick="goto('contact')">Enroll Now</button></div></div>
+      <div class="cl-card fade-up d2"><div class="cl-head"><div class="cl-icon">🎤</div><h3>Hip-Hop</h3><p>Street Style · Breaking · Popping</p></div><div class="cl-body"><p>Authentic hip-hop training — breaking, popping, locking, and freestyle. Real street culture brought into the studio, making every session raw, expressive, and electric.</p><div class="cl-meta"><span class="cl-tag">⏱ 60 min</span><span class="cl-tag">👦 Ages 10+</span><span class="cl-tag">📅 Tue, Thu, Sat</span></div><div class="lv-row"><span class="lv-lbl">Level</span><div class="lv-dot on"></div><div class="lv-dot on"></div><div class="lv-dot off"></div><div class="lv-dot off"></div><div class="lv-dot off"></div></div><button class="enroll" onclick="goto('contact')">Enroll Now</button></div></div>
+      <div class="cl-card fade-up d3"><div class="cl-head"><div class="cl-icon">🌊</div><h3>Contemporary</h3><p>Modern · Lyrical · Experimental</p></div><div class="cl-body"><p>Dance that embraces freedom of movement, emotional depth, and creative expression. Combine technique with improvisation in this deeply personal art form.</p><div class="cl-meta"><span class="cl-tag">⏱ 75 min</span><span class="cl-tag">👤 Ages 14+</span><span class="cl-tag">📅 Wed, Sat</span></div><div class="lv-row"><span class="lv-lbl">Level</span><div class="lv-dot on"></div><div class="lv-dot on"></div><div class="lv-dot on"></div><div class="lv-dot on"></div><div class="lv-dot off"></div></div><button class="enroll" onclick="goto('contact')">Enroll Now</button></div></div>
+      <div class="cl-card fade-up d1"><div class="cl-head"><div class="cl-icon">🪷</div><h3>Kathak</h3><p>Classical · Traditional · Expressive</p></div><div class="cl-body"><p>Discover the grace of Kathak — India's classical storytelling dance. Master intricate footwork (tatkar), graceful spins (chakkar), and expressive mudras that narrate timeless stories.</p><div class="cl-meta"><span class="cl-tag">⏱ 60 min</span><span class="cl-tag">👶 Ages 5+</span><span class="cl-tag">📅 Mon, Thu, Sat</span></div><div class="lv-row"><span class="lv-lbl">Level</span><div class="lv-dot on"></div><div class="lv-dot on"></div><div class="lv-dot on"></div><div class="lv-dot off"></div><div class="lv-dot off"></div></div><button class="enroll" onclick="goto('contact')">Enroll Now</button></div></div>
+      <div class="cl-card fade-up d2"><div class="cl-head"><div class="cl-icon">✨</div><h3>Jazz &amp; Freestyle</h3><p>Theatrical · Dynamic · Fun</p></div><div class="cl-body"><p>Jazz combines athleticism, personality, and style. Kicks, turns, leaps, and freestyle expression — theatrical, fun, and perfect for building confidence on stage.</p><div class="cl-meta"><span class="cl-tag">⏱ 60 min</span><span class="cl-tag">👦 Ages 8+</span><span class="cl-tag">📅 Tue, Fri</span></div><div class="lv-row"><span class="lv-lbl">Level</span><div class="lv-dot on"></div><div class="lv-dot on"></div><div class="lv-dot off"></div><div class="lv-dot off"></div><div class="lv-dot off"></div></div><button class="enroll" onclick="goto('contact')">Enroll Now</button></div></div>
+      <div class="cl-card fade-up d3"><div class="cl-head warm"><div class="cl-badge">Special</div><div class="cl-icon">💍</div><h3>Wedding Choreography</h3><p>Couples · Family · Bridal Party</p></div><div class="cl-body"><p>Custom-crafted routines for couples, families, and bridal groups. From elegant couple dances to energetic family flash mobs — every moment made unforgettable.</p><div class="cl-meta"><span class="cl-tag">🗓 Custom Schedule</span><span class="cl-tag">👥 All Ages</span></div><div style="background:rgba(212,160,23,.08);border-radius:10px;padding:.8rem 1rem;font-size:.82rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.7;border:1px solid rgba(212,160,23,.15)">✦ Includes group sessions, music editing, costume guidance &amp; dress rehearsal.</div><button class="enroll" onclick="goto('contact')" style="background:linear-gradient(135deg,var(--gold),var(--ember));border-color:transparent;color:#fff">Book Consultation</button></div></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ════════════════════════════════
+     G A L L E R Y
+════════════════════════════════ -->
+<div class="page" id="page-gallery">
+  <div class="pg-banner"><div class="pgb-bg"></div><div class="pgb-ov"></div><div class="pgb-scan"></div>
+    <div class="pgb-content wrap"><div class="pgb-eye">Visual Stories</div><h1 class="fade-up">Our <em>Gallery</em></h1><div class="pgb-bread"><a href="#" onclick="return goto('home')">Home</a> / Gallery</div></div>
+  </div>
+  <section><div class="wrap">
+    <div style="text-align:center" class="fade-up">
+      <div class="eyebrow" style="justify-content:center">Moments &amp; Memories</div>
+      <h2 class="head" style="text-align:center">Life at <em>Tandvikaa</em></h2>
+      <p class="body-text" style="text-align:center;max-width:460px;margin:0 auto">Glimpses from our studio, classes, and unforgettable performances.</p>
+    </div>
+    <div class="gal-masonry fade-up d2">
+      <div class="gal-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=800&q=80" alt="Studio"><div class="gal-ov"><span>The Studio</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=600&q=80" alt="Classes"><div class="gal-ov"><span>Bollywood Class</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&q=80" alt="Performance"><div class="gal-ov"><span>Live Performance</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&q=80" alt="Show"><div class="gal-ov"><span>Stage Show</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&q=80" alt="Practice"><div class="gal-ov"><span>Practice Sessions</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=600&q=80" alt="Hip-Hop" style="filter:brightness(.9) hue-rotate(20deg) saturate(1.3)"><div class="gal-ov"><span>Hip-Hop Class</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?w=800&q=80" alt="Contemporary" style="filter:brightness(.85) grayscale(20%)"><div class="gal-ov"><span>Contemporary</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&q=80" alt="Kathak"><div class="gal-ov"><span>Kathak Classes</span></div></div>
+      <div class="gal-item" onclick="openLb(this)"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=80" alt="Group"><div class="gal-ov"><span>Group Sessions</span></div></div>
+    </div>
+    <div style="text-align:center;margin-top:4rem;background:var(--card);border-radius:20px;padding:3rem;border:1px solid var(--border)" class="fade-up">
+      <img src="https://www.tandvikaa.com/wp-content/uploads/2025/08/cropped-download.png" alt="Logo" style="width:58px;height:58px;border-radius:50%;border:3px solid var(--gold);margin:0 auto 1rem;display:block;object-fit:cover;box-shadow:0 0 24px rgba(212,160,23,.35)">
+      <h3 style="font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--cream);margin-bottom:.6rem;letter-spacing:-.02em">Want to <em style="font-style:italic;color:var(--gold2)">Be Part</em> of These Moments?</h3>
+      <p class="body-text" style="text-align:center;margin-bottom:1.5rem">Join Tandvikaa and create memories that last a lifetime.</p>
+      <button class="btn btn-gold" onclick="goto('contact')">Book Your Free Demo Class ✦</button>
+    </div>
+  </div></section>
+</div>
+
+<!-- Lightbox -->
+<div id="lb" onclick="closeLb()"><button class="lb-x">✕</button><img id="lb-img" src="" alt=""></div>
+
+<!-- ════════════════════════════════
+     S C H E D U L E
+════════════════════════════════ -->
+<div class="page" id="page-schedule">
+  <div class="pg-banner"><div class="pgb-bg"></div><div class="pgb-ov"></div><div class="pgb-scan"></div>
+    <div class="pgb-content wrap"><div class="pgb-eye">Timetable</div><h1 class="fade-up">Class <em>Schedule</em></h1><div class="pgb-bread"><a href="#" onclick="return goto('home')">Home</a> / Schedule</div></div>
+  </div>
+  <section><div class="wrap">
+    <div style="text-align:center" class="fade-up">
+      <div class="eyebrow" style="justify-content:center">Weekly Timetable</div>
+      <h2 class="head" style="text-align:center">Find Your <em>Perfect</em> Class Time</h2>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.6rem;margin:2rem 0;display:flex;gap:2rem;flex-wrap:wrap;align-items:center;font-family:var(--sans);font-size:.85rem;color:var(--muted)" class="fade-up">
+      <span>📅 <span style="color:var(--cream);font-weight:600">Wed–Fri:</span> 9 AM – 9 PM &nbsp;·&nbsp; <span style="color:var(--cream);font-weight:600">Saturday:</span> 7 AM – 9 PM &nbsp;·&nbsp; <span style="color:var(--cream);font-weight:600">Sunday:</span> Closed</span>
+    </div>
+    <div class="sch-wrap fade-up d1">
+      <table class="sch-t">
+        <thead><tr><th>Time</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr></thead>
+        <tbody>
+          <tr><td class="ttime">9:00 AM</td><td><span class="slot s-fit">Dance Fitness</span></td><td>—</td><td><span class="slot s-fit">Dance Fitness</span></td><td><span class="slot s-kat">Kathak Beginner</span></td></tr>
+          <tr><td class="ttime">10:30 AM</td><td><span class="slot s-bol">Bollywood Kids</span></td><td><span class="slot s-kat">Kathak Beginner</span></td><td><span class="slot s-bol">Bollywood Kids</span></td><td><span class="slot s-hip">Hip-Hop Youth</span></td></tr>
+          <tr><td class="ttime">12:00 PM</td><td>—</td><td><span class="slot s-bol">Bollywood Adult</span></td><td>—</td><td><span class="slot s-con">Contemporary</span></td></tr>
+          <tr><td class="ttime">4:00 PM</td><td><span class="slot s-hip">Hip-Hop Junior</span></td><td><span class="slot s-jaz">Jazz &amp; Freestyle</span></td><td><span class="slot s-hip">Hip-Hop Junior</span></td><td><span class="slot s-bol">Bollywood Adv.</span></td></tr>
+          <tr><td class="ttime">5:30 PM</td><td><span class="slot s-kat">Kathak Interm.</span></td><td><span class="slot s-bol">Bollywood Teen</span></td><td><span class="slot s-kat">Kathak Interm.</span></td><td><span class="slot s-jaz">Jazz &amp; Freestyle</span></td></tr>
+          <tr><td class="ttime">7:00 PM</td><td><span class="slot s-con">Contemporary</span></td><td><span class="slot s-hip">Hip-Hop Adult</span></td><td><span class="slot s-bol">Bollywood Adult</span></td><td><span class="slot s-fit">Dance Fitness</span></td></tr>
+          <tr><td class="ttime">8:00 PM</td><td><span class="slot s-wed">Wedding Choreo</span></td><td><span class="slot s-wed">Wedding Choreo</span></td><td><span class="slot s-wed">Wedding Choreo</span></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sch-legend fade-up d2">
+      <div class="leg-i"><div class="leg-dot" style="background:#F08060"></div>Bollywood</div>
+      <div class="leg-i"><div class="leg-dot" style="background:#B07AE0"></div>Hip-Hop</div>
+      <div class="leg-i"><div class="leg-dot" style="background:#60C8E0"></div>Contemporary</div>
+      <div class="leg-i"><div class="leg-dot" style="background:var(--gold2)"></div>Kathak</div>
+      <div class="leg-i"><div class="leg-dot" style="background:#E070C0"></div>Jazz</div>
+      <div class="leg-i"><div class="leg-dot" style="background:#60E090"></div>Dance Fitness</div>
+      <div class="leg-i"><div class="leg-dot" style="background:#E07090"></div>Wedding Choreo</div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ════════════════════════════════
+     T E S T I M O N I A L S
+════════════════════════════════ -->
+<div class="page" id="page-testi">
+  <div class="pg-banner"><div class="pgb-bg"></div><div class="pgb-ov"></div><div class="pgb-scan"></div>
+    <div class="pgb-content wrap"><div class="pgb-eye">Reviews</div><h1 class="fade-up">Student <em>Stories</em></h1><div class="pgb-bread"><a href="#" onclick="return goto('home')">Home</a> / Testimonials</div></div>
+  </div>
+  <section class="testi-sec" style="background:var(--bg)"><div class="wrap">
+    <div style="text-align:center" class="fade-up">
+      <div class="eyebrow" style="justify-content:center">What People Say</div>
+      <h2 class="head" style="text-align:center">Real Stories, Real <em>Transformations</em></h2>
+    </div>
+    <div class="ratings-row fade-up d1">
+      <div class="rating-pill"><div class="rp-num">4.7</div><div class="rp-info"><p>126+ Reviews</p><p>★★★★★ Justdial</p></div></div>
+      <div class="rating-pill"><div class="rp-num">4.8</div><div class="rp-info"><p>Google Maps</p><p>★★★★★ Verified</p></div></div>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard fade-up d1"><div class="tcard-quote-mark">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">"I enrolled my daughter in Kathak six months ago. The transformation has been remarkable — not just in dance skills, but in confidence and self-expression."</p><div class="tcard-author"><div class="tcard-av">S</div><div><div class="tcard-n">Sunita Agarwal</div><div class="tcard-r">Parent · Kathak Student · Google</div></div></div></div>
+      <div class="tcard fade-up d2"><div class="tcard-quote-mark">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">"Tandvikaa is the best decision I made this year. The Bollywood classes are fun, instructors are so supportive, and the studio is beautiful."</p><div class="tcard-author"><div class="tcard-av">A</div><div><div class="tcard-n">Aditya Mehta</div><div class="tcard-r">Bollywood &amp; Hip-Hop · Justdial</div></div></div></div>
+      <div class="tcard fade-up d3"><div class="tcard-quote-mark">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">"We hired Tandvikaa for our sangeet. 15 family members, zero experience! Kiranjeet choreographed a beautiful routine. Standing ovation — absolutely magical!"</p><div class="tcard-author"><div class="tcard-av">D</div><div><div class="tcard-n">Diksha &amp; Family</div><div class="tcard-r">Wedding Choreography · Google</div></div></div></div>
+      <div class="tcard fade-up d1"><div class="tcard-quote-mark">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">"Best dance class with best choreographers. Aerobics class before dance on daily basis — Kiranjeet Sir is a fabulous choreographer covering every dance form!"</p><div class="tcard-author"><div class="tcard-av">V</div><div><div class="tcard-n">Verified Student</div><div class="tcard-r">Multi-Style · Justdial</div></div></div></div>
+      <div class="tcard fade-up d2"><div class="tcard-quote-mark">"</div><div class="tcard-stars">★★★★★</div><p class="tcard-text">"Nothing works like dancing here! Lost weight, gained stamina, and I look forward to every session. Dance Fitness that truly feels like a party!"</p><div class="tcard-author"><div class="tcard-av">M</div><div><div class="tcard-n">Manisha Bhatia</div><div class="tcard-r">Dance Fitness · Justdial</div></div></div></div>
+      <div class="tcard fade-up d3"><div class="tcard-quote-mark">"</div><div class="tcard-stars">★★★★☆</div><p class="tcard-text">"My son was shy and reserved. After 3 months in hip-hop, he's a completely different child — confident, expressive, passionate. They build character."</p><div class="tcard-author"><div class="tcard-av">R</div><div><div class="tcard-n">Rohit Khanna</div><div class="tcard-r">Parent · Hip-Hop Student · Google</div></div></div></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ════════════════════════════════
+     C O N T A C T
+════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="pg-banner"><div class="pgb-bg"></div><div class="pgb-ov"></div><div class="pgb-scan"></div>
+    <div class="pgb-content wrap"><div class="pgb-eye">Get in Touch</div><h1 class="fade-up">Contact <em>Us</em></h1><div class="pgb-bread"><a href="#" onclick="return goto('home')">Home</a> / Contact</div></div>
+  </div>
+  <section><div class="wrap">
+    <div class="con-grid">
+      <div class="fade-left">
+        <div class="eyebrow">Find &amp; Reach Us</div>
+        <h2 class="head" style="font-size:2.5rem">Let's Start Your<br><em>Dance Journey</em></h2>
+        <p class="body-text" style="margin-bottom:2rem">We'd love to meet you. Book your free demo, ask about programs, or simply visit our beautiful studio.</p>
+        <div class="ci-row"><div class="ci-icon">📍</div><div><div class="ci-lbl">Address</div><div class="ci-val">B213 Basement, Ganga Builders, New Ashok Nagar Rd,<br>Opp. Metro Pillar No. 165, New Delhi – 110096</div></div></div>
+        <div class="ci-row"><div class="ci-icon">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val"><a href="tel:+919873274147">+91 98732 74147</a></div></div></div>
+        <div class="ci-row"><div class="ci-icon">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:contact@tandvikaa.com">contact@tandvikaa.com</a></div></div></div>
+        <div class="ci-row"><div class="ci-icon">🕒</div><div><div class="ci-lbl">Hours</div><div class="ci-val">Wed – Fri: 9 AM – 9 PM<br>Saturday: 7 AM – 9 PM · Sunday: Closed</div></div></div>
+        <a href="https://wa.me/919873274147" target="_blank" class="wa-cta">💬 Chat on WhatsApp</a>
+        <div class="map-box">
+          <iframe src="https://maps.google.com/maps?q=New+Ashok+Nagar+Metro+Delhi&output=embed" allowfullscreen loading="lazy" title="Location"></iframe>
+        </div>
+      </div>
+      <div class="cf-box fade-right d2">
+        <div class="cf-head">
+          <img src="https://www.tandvikaa.com/wp-content/uploads/2025/08/cropped-download.png" alt="Logo">
+          <h3>Book a Free Demo</h3>
+        </div>
+        <p>Fill in the form and we'll confirm your slot within 24 hours.</p>
+        <div class="form-row">
+          <div class="fg"><label>First Name *</label><input type="text" placeholder="Your first name"></div>
+          <div class="fg"><label>Last Name *</label><input type="text" placeholder="Your last name"></div>
+        </div>
+        <div class="fg"><label>Email *</label><input type="email" placeholder="you@email.com"></div>
+        <div class="fg"><label>Phone</label><input type="tel" placeholder="+91 98765 43210"></div>
+        <div class="fg"><label>Class of Interest *</label>
+          <select>
+            <option>Select a class...</option>
+            <option>Bollywood Dance</option><option>Hip-Hop</option>
+            <option>Contemporary</option><option>Kathak</option>
+            <option>Jazz &amp; Freestyle</option><option>Dance Fitness</option>
+            <option>Wedding Choreography</option><option>Not sure — trial class</option>
+          </select>
+        </div>
+        <div class="fg"><label>Age Group</label>
+          <select><option>Select age...</option><option>Kids (5–12)</option><option>Teens (13–17)</option><option>Adults (18–35)</option><option>Adults (35+)</option></select>
+        </div>
+        <div class="fg"><label>Message</label><textarea placeholder="Tell us a bit about yourself..."></textarea></div>
+        <button class="f-submit" onclick="formSubmit(this)">Book My Free Demo Class ✦</button>
+        <p style="font-family:var(--sans);font-size:.72rem;color:var(--muted);margin-top:.9rem;text-align:center">✓ No experience needed &nbsp;·&nbsp; ✓ No commitment &nbsp;·&nbsp; ✓ Just come and dance!</p>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ════════════════════════════════
+     F O O T E R
+════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="nav-logo" onclick="goto('home')">
+          <div class="nav-logo-ring"><img src="https://www.tandvikaa.com/wp-content/uploads/2025/08/cropped-download.png" alt="Logo"></div>
+          <div class="nav-brand"><span class="nav-name">Tandvikaa</span><span class="nav-sub">School of Dance</span></div>
+        </div>
+        <p>Where movements tell stories — one beat at a time. Inspiring dance experiences, workshops, and performance creations tailored to express passion and creativity.</p>
+        <div class="ft-soc">
+          <a href="https://www.instagram.com/tandvikaa_school_of_dance/" target="_blank" class="fsc">IG</a>
+          <a href="#" class="fsc">FB</a>
+          <a href="#" class="fsc">YT</a>
+          <a href="https://wa.me/919873274147" target="_blank" class="fsc">WA</a>
+        </div>
+      </div>
+      <div><h5>Navigate</h5><ul>
+        <li><a href="#" onclick="return goto('home')">Home</a></li>
+        <li><a href="#" onclick="return goto('about')">About Us</a></li>
+        <li><a href="#" onclick="return goto('classes')">Classes</a></li>
+        <li><a href="#" onclick="return goto('gallery')">Gallery</a></li>
+        <li><a href="#" onclick="return goto('schedule')">Schedule</a></li>
+        <li><a href="#" onclick="return goto('testi')">Testimonials</a></li>
+        <li><a href="#" onclick="return goto('contact')">Contact</a></li>
+      </ul></div>
+      <div><h5>Classes</h5><ul>
+        <li><a href="#" onclick="return goto('classes')">Bollywood Dance</a></li>
+        <li><a href="#" onclick="return goto('classes')">Hip-Hop</a></li>
+        <li><a href="#" onclick="return goto('classes')">Contemporary</a></li>
+        <li><a href="#" onclick="return goto('classes')">Kathak</a></li>
+        <li><a href="#" onclick="return goto('classes')">Jazz &amp; Freestyle</a></li>
+        <li><a href="#" onclick="return goto('classes')">Dance Fitness</a></li>
+        <li><a href="#" onclick="return goto('classes')">Wedding Choreo</a></li>
+      </ul></div>
+      <div><h5>Contact</h5>
+        <div class="ft-ci"><span>📍</span><span>B213 Basement, Ganga Builders, New Ashok Nagar, New Delhi – 110096</span></div>
+        <div class="ft-ci"><span>📞</span><span><a href="tel:+919873274147" style="color:var(--muted)">+91 98732 74147</a></span></div>
+        <div class="ft-ci"><span>✉️</span><span>contact@tandvikaa.com</span></div>
+        <div class="ft-ci"><span>🕒</span><span>Wed–Fri: 9am–9pm · Sat: 7am–9pm</span></div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p>© 2025 <a href="#">Tandvikaa School of Dance &amp; Performing Arts</a>. All rights reserved.</p>
+      <p>Built for <a href="#">WordPress · Elementor Pro</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="wa-fl"><a href="https://wa.me/919873274147" target="_blank">💬</a></div>
+
+<script>
+// ── CURSOR ──
+const cur = document.getElementById('cursor');
+if(cur){
+  document.addEventListener('mousemove', e => {
+    cur.style.left = e.clientX+'px'; cur.style.top = e.clientY+'px';
+  });
+  document.querySelectorAll('a,button,.s-card,.tcard,.cl-card,.feat,.g-cell,.gal-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('big'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+  });
+}
+
+// ── PARTICLES ──
+const pCont = document.getElementById('pars');
+if(pCont){
+  for(let i=0;i<22;i++){
+    const p = document.createElement('div');
+    p.className='par';
+    p.style.cssText=`left:${Math.random()*100}%;--d:${7+Math.random()*10}s;--delay:${Math.random()*8}s;--dx:${(Math.random()-0.5)*80}px;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px`;
+    pCont.appendChild(p);
+  }
+}
+
+// ── STICKY NAV ──
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 40);
+});
+
+// ── 3D MOUSE TILT on hero card ──
+const c3d = document.getElementById('card3d');
+if(c3d){
+  document.addEventListener('mousemove', e => {
+    const rx = (e.clientY / innerHeight - .5) * 10;
+    const ry = (e.clientX / innerWidth - .5) * -14;
+    c3d.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+}
+
+// ── HAMBURGER ──
+function toggleMenu(){
+  const h = document.getElementById('ham');
+  const m = document.getElementById('mMenu');
+  h.classList.toggle('open');
+  m.style.display = m.style.display==='flex' ? 'none' : 'flex';
+}
+
+// ── PAGE NAV ──
+function goto(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  const pg = document.getElementById('page-'+id);
+  if(pg) pg.classList.add('on');
+  // update desktop nav
+  document.querySelectorAll('[data-p]').forEach(a=>a.classList.toggle('cur', a.dataset.p===id));
+  window.scrollTo({top:0, behavior:'smooth'});
+  // close mobile menu
+  document.getElementById('mMenu').style.display='none';
+  document.getElementById('ham').classList.remove('open');
+  setTimeout(reveal, 80);
+  return false;
+}
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(ents => {
+  ents.forEach(e => { if(e.isIntersecting) e.target.classList.add('in') });
+}, {threshold:0.1});
+
+function reveal(){
+  document.querySelectorAll('.page.on .fade-up:not(.in),.page.on .fade-in:not(.in),.page.on .fade-left:not(.in),.page.on .fade-right:not(.in)').forEach(el=>obs.observe(el));
+}
+window.addEventListener('scroll', reveal);
+reveal();
+
+// ── LIGHTBOX ──
+function openLb(el){
+  document.getElementById('lb-img').src = el.querySelector('img').src;
+  document.getElementById('lb').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeLb(){
+  document.getElementById('lb').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+// ── FORM ──
+function formSubmit(btn){
+  btn.textContent='✅ Booked! We\'ll confirm within 24 hours.';
+  btn.style.background='linear-gradient(135deg,#1B5E20,#2E7D32)';
+  btn.disabled=true;
+}
+</script>
+</body>
+</html>
